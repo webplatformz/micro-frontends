@@ -4,22 +4,24 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-window.customElements.define('react-app', class ReactApp extends HTMLElement {
+class ReactApp extends HTMLElement {
 
-    constructor() {
-        super();
-        console.log('ReactApp constructor');
-    }
+  constructor() {
+    super();
+    console.log('ReactApp constructor');
+  }
 
-    connectedCallback() {
-        console.log('ReactApp connected');
-        this.render();
-    }
+  connectedCallback() {
+    console.log('ReactApp connected');
+    this.render();
+  }
 
-    render() {
-        render(<App/>, this);
-    }
+  render() {
+    render(<App/>, this);
+  }
 
-});
+}
+
+window.customElements.define('react-app', ReactApp);
 
 registerServiceWorker();
