@@ -6,12 +6,11 @@ window.customElements.define('react-app', class extends HTMLElement {
 
     constructor() {
         super();
-        console.log('ReactApp constructor');
+        console.log('ReactApp constructor', this);
     }
 
     connectedCallback() {
         console.log('ReactApp connected');
-
         this.render();
     }
 
