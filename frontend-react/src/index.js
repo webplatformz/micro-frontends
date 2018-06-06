@@ -17,7 +17,7 @@ class ReactApp extends HTMLElement {
   }
 
   render() {
-    render(<App/>, this);
+    render(<App />, this);
   }
 
 }
