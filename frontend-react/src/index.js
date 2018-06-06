@@ -6,19 +6,28 @@ import registerServiceWorker from './registerServiceWorker';
 
 class ReactApp extends HTMLElement {
 
-  constructor() {
-    super();
-    console.log('ReactApp constructor');
-  }
+    static get observedAttributes() {
+        return ['toggle'];
+    }
 
-  connectedCallback() {
-    console.log('ReactApp connected');
-    this.render();
-  }
+    constructor() {
+        super();
+        console.log('ReactApp constructor');
+    }
 
-  render() {
-    render(<App />, this);
-  }
+    connectedCallback() {
+        console.log('ReactApp connected');
+        this.render();
+    }
+
+    render(props) {
+        render(<App {...props} />, this);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        this.render({ [name]: newValue });
+    }
+
 
 }
 

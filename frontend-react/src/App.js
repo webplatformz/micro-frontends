@@ -20,7 +20,11 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
+                    <img src={logo} className="App-logo" alt="logo" style={{
+                        animationDirection: this.props.toggle === 'true'
+                            ? 'normal'
+                            : 'reverse'
+                    }}/>
                     <h1 className="App-title">Welcome to React</h1>
                 </header>
                 <input type="text" placeholder="tue da öpis dri" onKeyUp={event => this.textEntered(event.target)}/>

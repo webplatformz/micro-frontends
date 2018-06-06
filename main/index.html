@@ -6,7 +6,7 @@
 
 <body>
     <main>
-        <react-app></react-app>
+        <react-app toggle="false"></react-app>
         <angular-app title="App"></angular-app>
     </main>
 </body>
@@ -14,11 +14,16 @@
 <script>
     const reactApp = document.querySelector('react-app');
     const angularApp = document.querySelector('angular-app');
+    let toggle = false;
 
     reactApp.addEventListener('textEntered', event => {
         const value = event.detail.text;
         angularApp.setAttribute('title', value);
     });
 
+    angularApp.addEventListener('onButtonClickedEvent', event => {
+        toggle = !toggle;
+        reactApp.setAttribute('toggle', toggle);
+    });
 
 </script>

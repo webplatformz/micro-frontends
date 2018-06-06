@@ -18,7 +18,7 @@ services:
     volumes:
       - ./frontend-react:/usr/src/app
     working_dir: /usr/src/app
-    command: sh -c "npm install && PUBLIC_URL=http://localhost:3000/ npm run build && npm run serve"
+    command: sh -c "npm install && npm run serve & npm run watch"
     ports:
       - "3000:3000"
 
@@ -27,6 +27,6 @@ services:
     volumes:
       - ./frontend-angular:/usr/src/app
     working_dir: /usr/src/app
-    command: sh -c "npm install && npm run build -- --base-href=http://localhost:4200/ && npm run serve"
+    command: sh -c "npm install && npm run serve & npm run watch"
     ports:
       - "4200:4200"

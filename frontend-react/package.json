@@ -13,10 +13,12 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "PUBLIC_URL=http://localhost:3000/ nodemon --watch src --exec 'npm run build'"
   },
   "devDependencies": {
     "babel-plugin-transform-custom-element-classes": "0.1.0",
+    "nodemon": "^1.17.5",
     "react-app-rewired": "1.5.2"
   }
 }
