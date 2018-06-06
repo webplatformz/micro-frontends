@@ -7,6 +7,18 @@
 <body>
     <main>
         <react-app></react-app>
-        <angular-app></angular-app>
+        <angular-app title="App"></angular-app>
     </main>
 </body>
+
+<script>
+    const reactApp = document.querySelector('react-app');
+    const angularApp = document.querySelector('angular-app');
+
+    reactApp.addEventListener('textEntered', event => {
+        const value = event.detail.text;
+        angularApp.setAttribute('title', value);
+    });
+
+
+</script>
