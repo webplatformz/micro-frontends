@@ -17,7 +17,7 @@ class ReactApp extends HTMLElement {
 
     connectedCallback() {
         console.log('ReactApp connected');
-        this.render();
+        this.render(this.getAttributesObject());
     }
 
     render(props) {
@@ -25,7 +25,14 @@ class ReactApp extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this.render({ [name]: newValue });
+        this.render(Object.assign(this.getAttributesObject(), { [name]: newValue }));
+    }
+
+    getAttributesObject() {
+        return Array.from(this.attributes).reduce((acc, el) => {
+            acc[el.name] = el.value;
+            return acc;
+        }, {});
     }
 
 
