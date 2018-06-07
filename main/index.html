@@ -17,11 +17,9 @@
     const reactApp = document.querySelector('react-app');
 
     function inlineStylesheets(appElement) {
-      const stylesheets = Array.from(
-        document.getElementById(appElement.tagName.toLowerCase()).import.getElementsByTagName('link')
-      );
+      const template = document.getElementById(appElement.tagName.toLowerCase()).import.getElementById('webcomponent-styles');
 
-      stylesheets.forEach(stylesheet => appElement.shadowRoot.appendChild(stylesheet.cloneNode(true)));
+      appElement.shadowRoot.appendChild(template.content.cloneNode(true));
     }
 
     customElements.whenDefined('react-app').then(() => {

@@ -9,6 +9,7 @@ module.exports = {
     config.plugins.push(new HtmlWebpackPlugin({
       filename: 'react-app.html',
       template: path.resolve(__dirname, 'public/react-app.html'),
+      inject: false,
     }));
 
     return config;
