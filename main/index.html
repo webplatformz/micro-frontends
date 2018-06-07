@@ -1,29 +1,45 @@
 <head>
     <link rel="stylesheet" href="styles.css">
-    <link rel="import" href="http://localhost:3000/react-app.html">
-    <link rel="import" href="http://localhost:4200">
+    <link id="react-app" rel="import" href="http://localhost:3000/react-app.html">
+    <link id="angular-app" rel="import" href="http://localhost:4200">
 </head>
 
 <body>
-    <main>
-        <react-app toggle="false"></react-app>
-        <angular-app title="App"></angular-app>
-    </main>
+<main>
+    <react-app toggle="false"></react-app>
+    <angular-app title="App"></angular-app>
+</main>
 </body>
 
 <script>
-    const reactApp = document.querySelector('react-app');
+  (function () {
     const angularApp = document.querySelector('angular-app');
-    let toggle = false;
+    const reactApp = document.querySelector('react-app');
 
-    reactApp.addEventListener('textEntered', event => {
+    function inlineStylesheets(appElement) {
+      const stylesheets = Array.from(
+        document.getElementById(appElement.tagName.toLowerCase()).import.getElementsByTagName('link')
+      );
+
+      stylesheets.forEach(stylesheet => appElement.shadowRoot.appendChild(stylesheet.cloneNode(true)));
+    }
+
+    customElements.whenDefined('react-app').then(() => {
+      const reactAppShadowRoot = reactApp.shadowRoot;
+      let toggle = false;
+
+      inlineStylesheets(reactApp);
+
+      reactAppShadowRoot.addEventListener('textEntered', event => {
         const value = event.detail.text;
         angularApp.setAttribute('title', value);
-    });
+      });
 
-    angularApp.addEventListener('onButtonClickedEvent', event => {
+      angularApp.addEventListener('onButtonClickedEvent', () => {
         toggle = !toggle;
         reactApp.setAttribute('toggle', toggle);
-    });
+      });
 
+    });
+  }())
 </script>

@@ -12,16 +12,15 @@ class ReactApp extends HTMLElement {
 
     constructor() {
         super();
-        console.log('ReactApp constructor');
+        this.attachShadow({mode: 'open'});
     }
 
     connectedCallback() {
-        console.log('ReactApp connected');
         this.render(this.getAttributesObject());
     }
 
     render(props) {
-        render(<App {...props} />, this);
+        render(<App {...props} />, this.shadowRoot);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
